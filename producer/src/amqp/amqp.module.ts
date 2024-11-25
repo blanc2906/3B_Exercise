@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AmqpController } from './amqp.controller';
-import { AmqpService } from './amqp.service'; 
+import { AmqpService } from './amqp.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
@@ -12,6 +12,9 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         options: {
           urls: ['amqp://localhost:5672'],
           queue: 'message-queue',
+          queueOptions: {
+            durable: true
+          },
         },
       },
     ]),
